@@ -9,10 +9,16 @@
 								<sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" xmlns:sap.ui.layout.form="sap.ui.layout.form"
 									xmlns:sap.ui.core="sap.ui.core" id="form0">
 									<sap.ui.layout.form:content>
-										<Label text="Label 1"/>
-										<Input id="input0"/>
-										<Label text="Label 2"/>
-										<Input id="input2"/>
+										<Label text="ID"/>
+										<Input id="produto_id"/>
+										<Label text="Nome"/>
+										<Input id="produto_nome"/>
+										<Label text="Descrição"/>
+										<Input id="produto_descricao"/>
+										<Label text="Preço"/>
+										<Input id="produto_price"/>
+										<Label />
+										<Button icon="sap-icon://save" text="Salvar" press="onSave" />
 									</sap.ui.layout.form:content>
 								</sap.ui.layout.form:SimpleForm>
 							</content>

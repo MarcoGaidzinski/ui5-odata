@@ -9,6 +9,19 @@ sap.ui.define([
 			this._modelo = this.getOwnerComponent().getModel("fonte"); // v2.ODataModel
 		},
 
+		onSave: function (oEvent) {
+			// criar variavel oNovoProduto
+			// ID, Name, Description
+			var oNovoProduto = {};
+			oNovoProduto.ID = this.byId("produto_id").getValue();
+			oNovoProduto.Name = this.byId("produto_nome").getValue();
+			oNovoProduto.Description = this.byId("produto_descricao").getValue();
+			oNovoProduto.Price = this.byId("produto_price").getValue();
+			// Capturar oDataModel
+			// Chamar o .create
+			this._modelo.create("/Products", oNovoProduto);
+		},
+
 		onSearch: function (oEvent) {
 			var oListBinding = this._list.getBinding("items");
 			var sQuery = oEvent.getParameters().query;
