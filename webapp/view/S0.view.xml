@@ -17,17 +17,18 @@
 										<Input id="produto_descricao"/>
 										<Label text="Preço"/>
 										<Input id="produto_price"/>
-										<Label />
-										<Button icon="sap-icon://save" text="Salvar" press="onSave" />
+										<Label/>
+										<Button icon="sap-icon://save" text="Salvar" press="onSave"/>
+										<Button icon="sap-icon://save" text="Atualizar" press="onUpdate"/>
 									</sap.ui.layout.form:content>
 								</sap.ui.layout.form:SimpleForm>
 							</content>
 						</Panel>
 						<Panel headerText="Produtos" expandable="true">
 							<SearchField search="onSearch"/>
-							<List id="list" items="{fonte>/Products}">
+							<List mode="Delete" delete="onDelete" id="list" items="{fonte>/Products}" itemPress="onItemPress">
 								<items>
-									<StandardListItem title="{fonte>ID}" description="{fonte>Name}" info="{fonte>Price}"/>
+									<StandardListItem type="Active" title="{fonte>ID}" description="{fonte>Name}" info="{fonte>Price}"/>
 								</items>
 							</List>
 						</Panel>
