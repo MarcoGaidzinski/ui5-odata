@@ -9,9 +9,14 @@ sap.ui.define([
 		onInit: function () {
 			this._list = this.byId("list"); // sap.m.List
 			this._modelo = this.getOwnerComponent().getModel("fonte"); // v2.ODataModel
+
+			this._oNovoContexto = this._modelo.createEntry("/Products");
+			this.byId("form").setBindingContext(this._oNovoContexto);
 		},
 
 		onSave: function (oEvent) {
+			this._modelo.submitChanges();
+			return;
 
 			function onSuccess(oProdutoCriado, resposta) {
 				MessageToast.show("Produto criado com ID" + oProdutoCriado.ID);
@@ -27,6 +32,7 @@ sap.ui.define([
 			oNovoProduto.ID = this.byId("produto_id").getValue();
 			oNovoProduto.Name = this.byId("produto_nome").getValue();
 			oNovoProduto.Description = this.byId("produto_descricao").getValue();
+			oNovoProduto.Price = this.byId("produto_price").getValue();
 
 			var oParameters = {
 				success: onSuccess,
@@ -53,6 +59,7 @@ sap.ui.define([
 			oNovoProduto.ID = this.byId("produto_id").getValue();
 			oNovoProduto.Name = this.byId("produto_nome").getValue();
 			oNovoProduto.Description = this.byId("produto_descricao").getValue();
+			oNovoProduto.Price = this.byId("produto_price").getValue();
 
 			var oParameters = {
 				success: onSuccess,
@@ -77,6 +84,7 @@ sap.ui.define([
 			this.byId("produto_id").setValue(oListItemContext.getProperty("ID"));
 			this.byId("produto_nome").setValue(oListItemContext.getProperty("Name"));
 			this.byId("produto_descricao").setValue(oListItemContext.getProperty("Description"));
+			this.byId("produto_price").setValue(oListItemContext.getProperty("Price"));
 
 		},
 

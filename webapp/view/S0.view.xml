@@ -7,16 +7,16 @@
 						<Panel headerText="Formulário" expandable="true">
 							<content>
 								<sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" xmlns:sap.ui.layout.form="sap.ui.layout.form"
-									xmlns:sap.ui.core="sap.ui.core" id="form0">
+									xmlns:sap.ui.core="sap.ui.core" id="form">
 									<sap.ui.layout.form:content>
 										<Label text="ID"/>
-										<Input id="produto_id"/>
+										<Input value="{/fonte>ID}" id="produto_id"/>
 										<Label text="Nome"/>
-										<Input id="produto_nome"/>
+										<Input value="{/fonte>Name}" id="produto_nome"/>
 										<Label text="Descrição"/>
-										<Input id="produto_descricao"/>
+										<Input value="{/fonte>Description}" id="produto_descricao"/>
 										<Label text="Preço"/>
-										<Input id="produto_price"/>
+										<Input value="{/fonte>Price}" id="produto_price"/>
 										<Label/>
 										<Button icon="sap-icon://save" text="Salvar" press="onSave"/>
 										<Button icon="sap-icon://save" text="Atualizar" press="onUpdate"/>
