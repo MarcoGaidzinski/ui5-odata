@@ -15,7 +15,7 @@
 		},
 		"dataSources": {
 			"OData.svc": {
-				"uri": "/ODATA_ORG/V2/(S(marcoaureliogaidzinski))/OData/OData.svc/",
+				"uri": "/ODATA_ORG/V2/(S(marcogaidzinski))/OData/OData.svc/",
 				"type": "OData",
 				"settings": {
 					"localUri": "localService/metadata.xml"

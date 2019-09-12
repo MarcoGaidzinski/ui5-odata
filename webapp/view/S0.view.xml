@@ -10,16 +10,17 @@
 									xmlns:sap.ui.core="sap.ui.core" id="form">
 									<sap.ui.layout.form:content>
 										<Label text="ID"/>
-										<Input value="{/fonte>ID}" id="produto_id"/>
+										<Input value="{fonte>ID}" id="produto_id"/>
 										<Label text="Nome"/>
-										<Input value="{/fonte>Name}" id="produto_nome"/>
+										<Input value="{fonte>Name}" id="produto_nome"/>
 										<Label text="Descrição"/>
-										<Input value="{/fonte>Description}" id="produto_descricao"/>
+										<Input value="{fonte>Description}" id="produto_descricao"/>
 										<Label text="Preço"/>
-										<Input value="{/fonte>Price}" id="produto_price"/>
+										<Input value="{fonte>Price}" id="produto_price"/>
 										<Label/>
 										<Button icon="sap-icon://save" text="Salvar" press="onSave"/>
 										<Button icon="sap-icon://save" text="Atualizar" press="onUpdate"/>
+										<Button icon="sap-icon://eraser" text="Limpar" press="onClean"/>
 									</sap.ui.layout.form:content>
 								</sap.ui.layout.form:SimpleForm>
 							</content>

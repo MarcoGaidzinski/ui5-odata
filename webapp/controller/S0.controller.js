@@ -6,12 +6,33 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("ovly.odata.controller.S0", {
+		onSuccess: function (oProdutoCriado, resposta) {
+			var oParameters = {
+				success: this.onSuccess.bind(this),
+				error: this.onError.bind(this)
+			};
+			this._oNovoContexto = this._modelo.createEntry("/Products", oParameters);
+			window._oNovoContexto = this._oNovoContexto;
+			this.byId("form").setBindingContext(this._oNovoContexto, "fonte");
+			MessageToast.show("Produto criado com ID" + oProdutoCriado.ID);
+		},
+
+		onError: function (oError) {
+			MessageBox.error("Erro:" + oError.responseText);
+		},
+
 		onInit: function () {
 			this._list = this.byId("list"); // sap.m.List
 			this._modelo = this.getOwnerComponent().getModel("fonte"); // v2.ODataModel
 
-			this._oNovoContexto = this._modelo.createEntry("/Products");
-			this.byId("form").setBindingContext(this._oNovoContexto);
+			var oParameters = {
+				success: this.onSuccess.bind(this),
+				error: this.onError.bind(this)
+			};
+
+			this._oNovoContexto = this._modelo.createEntry("/Products", oParameters);
+			window._oNovoContexto = this._oNovoContexto;
+			this.byId("form").setBindingContext(this._oNovoContexto, "fonte");
 		},
 
 		onSave: function (oEvent) {
@@ -81,11 +102,22 @@ sap.ui.define([
 			var oListItemContext = oListItem.getBindingContext("fonte");
 			// window._contexto = oListItemContext;
 
+			this._modelo.resetChanges();
+			this.byId("form").setBindingContext(oListItemContext, "fonte");
+			return;
+
 			this.byId("produto_id").setValue(oListItemContext.getProperty("ID"));
 			this.byId("produto_nome").setValue(oListItemContext.getProperty("Name"));
 			this.byId("produto_descricao").setValue(oListItemContext.getProperty("Description"));
 			this.byId("produto_price").setValue(oListItemContext.getProperty("Price"));
 
+		},
+
+		onClean: function (oEvent) {
+			var oContexto = this.byId("form").getBindingContext("fonte");
+			this._modelo.setProperty("Name", "", oContexto);
+			this._modelo.setProperty("Description", "", oContexto);
+			this._modelo.setProperty("Price", "", oContexto);
 		},
 
 		onDelete: function (oEvent) {
